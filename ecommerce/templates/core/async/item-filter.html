@@ -1,0 +1,97 @@
+<div class="shop-product-fillter">
+    <div class="totall-product">
+        <p>We found <strong class="text-brand">{{item.count}}</strong> items for you!</p>
+    </div>
+    <div class="sort-by-product-area">
+        <div class="sort-by-cover">
+            {% comment %} <div class="sort-by-product-wrap">
+                <div class="sort-by">
+                    <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                </div>
+                <div class="sort-by-dropdown-wrap">
+                    <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                </div>
+            </div>
+            <div class="sort-by-dropdown">
+                <ul>
+                    <li><a class="active" href="#">Featured</a></li>
+                    <li><a href="#">Price: Low to High</a></li>
+                    <li><a href="#">Price: High to Low</a></li>
+                </ul>
+            </div> {% endcomment %}
+            <div class="search-form">
+                {% comment %} <form  id="price-filter-btn"> {% endcomment %}
+                <div style="display: flex;">
+                    <input type="text" placeholder="Search…" id="item_value" />
+                    {% comment %} <button type="submit" id="search-category"><i class="fi-rs-search"></i></button> {% endcomment %}
+                    <button type="submit" class="search-item"><i class="fi-rs-search"></i></button>
+                </div>
+                {% comment %} </form> {% endcomment %}
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="product-list mb-50 ">
+    {% for p in item %}
+    <div class="product-cart-wrap">
+        <div class="product-img-action-wrap">
+            <div class="product-img product-img-zoom">
+                <div class="product-img-inner">
+                    <a href="{% url 'core:product-detail' p.pid %}">
+                        <img class="default-img" src="{{p.image.url}}" alt="" />
+                        <img class="hover-img" src="{{p.image.url}}" alt="" />
+                    </a>
+                </div>
+            </div>
+            <div class="product-action-1">
+                <button style="border: none; background: none;" class="add-to-wishlist" data-product-item="{{p.id}}" aria-label="Add To Wishlist"><i class="fi-rs-heart" style="fill: aqua;"></i></button>
+            </div>
+            <div class="product-badges product-badges-position product-badges-mrg">
+                <span class="hot">-{{p.get_percentage|floatformat:0}}%</span>
+            </div>
+        </div>
+        <div class="product-content-wrap">
+            <div class="product-category">
+                <a href="{% url 'core:category-product-list' p.category.cid %}">{{p.category}}</a>
+            </div>
+            <h2><a href="{% url 'core:product-detail' p.pid %}">{{p.title|truncatechars:50}}</a></h2>
+            <div class="product-rate-cover">
+                {% comment %} <div class="product-rate d-inline-block">
+                    <div class="product-rating" style="width: 90%"></div>
+                </div> {% endcomment %}
+                {% comment %} <span class="font-small ml-5 text-muted"> (4.0)</span> {% endcomment %}
+                {% comment %} <span class="ml-30">500g</span> {% endcomment %}
+            </div>
+            <p class="mt-15 mb-15">{{p.description|truncatechars:200|safe}}</p>
+            <div class="product-price">
+                <span>${{p.price}} </span>
+                <span class="old-price">${{p.old_price}}</span>
+            </div>
+            <div class="product-rate-cover">
+                {% for product_id, data in feature_pro_ratings.items %}
+                {% if product_id == p.id %}
+                    <div class="product-rate d-inline-block">
+                        <div class="product-rating" style="width: {{ data.average_rating_percentage }}%"></div>
+                    </div>     
+                    <span class="font-small ml-5 text-muted"> ({{ data.access_average }})</span>
+                {% endif %}
+            {% endfor %}
+            </div>
+            {% comment %} <div class="mt-30 d-flex align-items-center">
+                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
+            </div> {% endcomment %}
+            <div class=" mt-30 d-flex align-items-center add-cart">
+                <input type="hidden" value="1" name="" id="product-quantity" class="product-quantity-{{p.id}}">
+                <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
+                <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
+                <input type="hidden" class="product-id-{{p.id}}" value="{{ p.id }}">
+                <input type="hidden" class="product-title-{{p.id}}" value="{{ p.title }}">
+                <a class="add add-to-cart-btn btn" id="add-to-cart-btn" style="border: none;" data-index="{{p.id}}" ><i class="fi-rs-shopping-cart mr-5" ></i>Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!--single product-->
+</div>
+<!--End Deals-->
