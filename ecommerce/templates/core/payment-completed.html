@@ -20,7 +20,7 @@
 <body>
     <div class="invoice invoice-content invoice-5">
         <div class="back-top-home justify-content-center align-items-center text-center hover-up mt-30 ml-30 pb-4">
-            <h3><a class="hover-up" href="#"><i class="fi-rs-settings-sliders mr-5"></i> Dashboard</a></h3>
+            <h3><a class="hover-up" href="{% url "core:dashboard"%}"><i class="fi-rs-settings-sliders mr-5"></i> Dashboard</a></h3>
         </div>
         <div class="container">
             <div class="row">
@@ -108,7 +108,6 @@
                         </div>
                         <div class="invoice-btn-section clearfix d-print-none">
                             <a href="javascript:window.print()" class="btn btn-lg btn-custom btn-print hover-up"> <img src="{% static 'assets/imgs/theme/icons/icon-print.svg' %}" alt="" /> Print </a>
-                            <a id="invoice_download_btn" class="btn btn-lg btn-custom btn-download hover-up"> <img src="{% static 'assets/imgs/theme/icons/icon-download.svg' %}" alt="" /> Download </a>
                         </div>
                     </div>
                 </div>
