@@ -1,6 +1,6 @@
 # E-commerce website
 
-This is an e-commerce website that included a lot of functions.
+This is an e-commerce website build by Django framework that included a lot of functions.
 - Allow the user to add product to wishlist and cart
 - Access to each product detail and vendor detail
 - Search product by title or description
