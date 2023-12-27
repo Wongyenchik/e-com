@@ -10,3 +10,5 @@ This is an e-commerce website build by Django framework that included a lot of f
 - Make an order and pay via Paypal
 - Edit profile such as address, name, bio and phone number
 - Print invoice after payment
+
+Demo link here: https://youtu.be/SBrf3uXnQiM
